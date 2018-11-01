@@ -1,0 +1,280 @@
+#include <sys/types.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <sys/wait.h>
+#include <stdlib.h>
+
+
+int sum();
+int main() {
+    int A[2];
+	pipe(A);
+	pid_t pid1 = fork();
+	if (!pid1) {
+		dup2(A[1], 1);
+		close(A[0]);
+		close(A[1]);
+		execlp("cat","cat", "log.txt", NULL);
+		exit(EXIT_FAILURE);
+	}
+
+	int B[2];
+	pipe(B);
+	pid_t pid2 = fork();
+	if (!pid2) {
+		dup2(A[0], 0);
+		close(A[0]);
+		close(A[1]);
+
+		dup2(B[1], 1);
+		close(B[0]);
+		close(B[1]);
+		execlp("cut","cut", "-f1", "-d ", NULL);
+		exit(EXIT_FAILURE);
+	}
+	close(A[0]);
+	close(A[1]);
+	int C[2];
+	pipe(C);
+	pid_t pid3 = fork();
+	if (!pid3) {
+		dup2(B[0], 0);
+		close(B[0]);
+		close(B[1]);
+
+		dup2(C[1], 1);
+		close(C[0]);
+		close(C[1]);
+		execlp("grep","grep", "-v", "-", NULL);
+		exit(EXIT_FAILURE);
+	}
+	close(B[0]);
+	close(B[1]);
+	int D[2];
+	pipe(D);
+	pid_t pid4 = fork();
+	if (!pid4) {
+		dup2(C[0], 0);
+		close(C[0]);
+		close(C[1]);
+
+		dup2(D[1], 1);
+		close(D[0]);
+		close(D[1]);
+		execlp("sort","sort", NULL);
+		exit(EXIT_FAILURE);
+	}
+	close(C[0]);
+	close(C[1]);
+	int E[2];
+	pipe(E);
+	pid_t pid5 = fork();
+	if (!pid5) {
+		dup2(D[0], 0);
+		close(D[0]);
+		close(D[1]);
+
+		dup2(E[1], 1);
+		close(E[0]);
+		close(E[1]);
+		execlp("uniq","uniq", "-c", NULL);
+		exit(EXIT_FAILURE);
+	}
+	close(D[0]);
+	close(D[1]);
+	int F[2];
+	pipe(F);
+	pid_t pid6 = fork();
+	if (!pid6) {
+		dup2(E[0], 0);
+		close(E[0]);
+		close(E[1]);
+
+		dup2(F[1], 1);
+		close(F[0]);
+		close(F[1]);
+		execlp("sort","sort", "-nr", NULL);
+		exit(EXIT_FAILURE);
+	}
+	close(E[0]);
+	close(E[1]);
+	int G[2];
+	pipe(G);
+	pid_t pid7 = fork();
+	if (!pid7) {
+		dup2(F[0], 0);
+		close(F[0]);
+		close(F[1]);
+
+		dup2(G[1], 1);
+		close(G[0]);
+		close(G[1]);
+		execlp("head","head", "-10", NULL);
+		exit(EXIT_FAILURE);
+	}
+	close(F[0]);
+	close(F[1]);
+	int H[2];
+	pipe(H);
+	pid_t pid8 = fork();
+	if (!pid8) {
+		dup2(G[0], 0);
+		close(G[0]);
+		close(G[1]);
+
+		dup2(H[1], 1);
+		close(H[0]);
+		close(H[1]);
+		char buf[100];
+		sprintf(buf, "{print $2 \" - \" $1 \" - \" $1*100/%d \"%%\"}", sum());
+		execlp("awk","awk",buf,NULL);
+		exit(EXIT_FAILURE);
+	}
+	close(G[0]);
+	close(G[1]);
+	close(H[1]);
+	FILE* Cin = fdopen(H[0],"r");
+    char read_el[999999];
+    if(Cin == NULL){
+        printf("File Opening Error!!");
+    }
+    while (fgets(read_el, 999999, Cin) != NULL){
+        printf("%s", read_el);
+    }
+    fclose(Cin);
+
+    return 0;
+}
+
+int sum(){
+    int A[2];
+	pipe(A);
+	pid_t pid1 = fork();
+	if (!pid1) {
+		dup2(A[1], 1);
+		close(A[0]);
+		close(A[1]);
+		execlp("cat","cat", "log.txt", NULL);
+		exit(EXIT_FAILURE);
+	}
+
+	int B[2];
+	pipe(B);
+	pid_t pid2 = fork();
+	if (!pid2) {
+		dup2(A[0], 0);
+		close(A[0]);
+		close(A[1]);
+
+		dup2(B[1], 1);
+		close(B[0]);
+		close(B[1]);
+		execlp("cut","cut", "-f1", "-d ", NULL);
+		exit(EXIT_FAILURE);
+	}
+	close(A[0]);
+	close(A[1]);
+	int C[2];
+	pipe(C);
+	pid_t pid3 = fork();
+	if (!pid3) {
+		dup2(B[0], 0);
+		close(B[0]);
+		close(B[1]);
+
+		dup2(C[1], 1);
+		close(C[0]);
+		close(C[1]);
+		execlp("grep","grep", "-v", "-", NULL);
+		exit(EXIT_FAILURE);
+	}
+	close(B[0]);
+	close(B[1]);
+	int D[2];
+	pipe(D);
+	pid_t pid4 = fork();
+	if (!pid4) {
+		dup2(C[0], 0);
+		close(C[0]);
+		close(C[1]);
+
+		dup2(D[1], 1);
+		close(D[0]);
+		close(D[1]);
+		execlp("sort","sort", NULL);
+		exit(EXIT_FAILURE);
+	}
+	close(C[0]);
+	close(C[1]);
+	int E[2];
+	pipe(E);
+	pid_t pid5 = fork();
+	if (!pid5) {
+		dup2(D[0], 0);
+		close(D[0]);
+		close(D[1]);
+
+		dup2(E[1], 1);
+		close(E[0]);
+		close(E[1]);
+		execlp("uniq","uniq", "-c", NULL);
+		exit(EXIT_FAILURE);
+	}
+	close(D[0]);
+	close(D[1]);
+	int F[2];
+	pipe(F);
+	pid_t pid6 = fork();
+	if (!pid6) {
+		dup2(E[0], 0);
+		close(E[0]);
+		close(E[1]);
+
+		dup2(F[1], 1);
+		close(F[0]);
+		close(F[1]);
+		execlp("sort","sort", "-nr", NULL);
+		exit(EXIT_FAILURE);
+	}
+	close(E[0]);
+	close(E[1]);
+	int G[2];
+	pipe(G);
+	pid_t pid7 = fork();
+	if (!pid7) {
+		dup2(F[0], 0);
+		close(F[0]);
+		close(F[1]);
+
+		dup2(G[1], 1);
+		close(G[0]);
+		close(G[1]);
+		execlp("head","head", "-10", NULL);
+		exit(EXIT_FAILURE);
+	}
+	close(F[0]);
+	close(F[1]);
+	int H[2];
+	pipe(H);
+	pid_t pid8 = fork();
+	if (!pid8) {
+		dup2(G[0], 0);
+		close(G[0]);
+		close(G[1]);
+
+		dup2(H[1], 1);
+		close(H[0]);
+		close(H[1]);
+		execlp("awk","awk","{print $1}",NULL);
+		exit(EXIT_FAILURE);
+	}
+	close(G[0]);
+	close(G[1]);
+	close(H[1]);
+	FILE* Cin = fdopen(H[0],"r");
+	int x,sum=0;
+	while(fscanf(Cin,"%d",&x)>0){
+		sum+=x;
+	}
+    	return sum;
+}
