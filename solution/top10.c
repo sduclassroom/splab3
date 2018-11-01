@@ -39,7 +39,7 @@ int main() {
     pipe(C);
     
     pid_t pid3 = fork();
-    if (!pid3) { // grep
+    if (!pid3) { // sort
         dup2(B[0], 0);
         close(B[0]);
         close(B[1]);
@@ -60,7 +60,7 @@ int main() {
     pipe(D);
     
     pid_t pid4 = fork();
-    if (!pid4) { // sort
+    if (!pid4) { // uniq
         dup2(C[0], 0);
         close(C[0]);
         close(C[1]);
@@ -80,7 +80,7 @@ int main() {
     pipe(E);
     
     pid_t pid5 = fork();
-    if (!pid5) { // uniq
+    if (!pid5) { // sort
         dup2(D[0], 0);
         close(D[0]);
         close(D[1]);
@@ -100,7 +100,7 @@ int main() {
     pipe(F);
     
     pid_t pid6 = fork();
-    if (!pid6) { // sort
+    if (!pid6) { // cat
         dup2(E[0], 0);
         close(E[0]);
         close(E[1]);
@@ -120,7 +120,7 @@ int main() {
     pipe(G);
     
     pid_t pid7 = fork();
-    if (!pid7) { // cat
+    if (!pid7) { // awk
         dup2(F[0], 0);
         close(F[0]);
         close(F[1]);
