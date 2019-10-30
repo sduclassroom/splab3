@@ -1,7 +1,7 @@
 ## splab3 - pipeline
 
 ### Aim
-- Learn to build a pipeline of processes using various system calls.
+- Learn how to combine several processes in a pipeline using various system calls and pipes.
 
 ### Task
 
