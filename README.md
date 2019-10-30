@@ -1,7 +1,5 @@
 # splab3 - io system calls
 
-###### \[deadline is week07 labtime, October 15-19, 2018 \]
-
 ### Aim
 - To master basic i/o redirection system calls
 
