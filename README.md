@@ -5,14 +5,14 @@
 
 ### Task
 
-In this lab you are to write a program in `C` that solves the same problem as in `splab1`. The program should use the same tools that you used in `splab1`, but the shell logic should be done by the C program itself. You should use system calls like `fork`, `exec*`, `wait`/`waitpid`, `open`, `close`, `pipe`, `dup2`, `exit`/`_exit`. Store your solution in [./solution/top.c](./solution/top.c).
+In this lab you are to write a program in `C` that solves the same problem as in `splab1`. The program should use the same tools that you used in `splab1`, but the shell logic should be done by the C program itself. You should use system calls like `fork`, `exec*`, `wait`/`waitpid`, `open`, `close`, `pipe`, `dup2`, `exit`/`_exit`.
 
 By shell logic we mean:
 * forking processes and waiting results from them
 * opening files and i/o redirection (using `pipe`)
-* `if` statements and loops (e.g. `for`/`while`) of the shell
+* `if` statements and loops (e.g. `for`/`while`) of `bash`.
 
-Also the calculation of sums, precentages etc can be done in `C`.
+Store your `splab1` solution in [./solution/top](./solution/top) and `splab3` solution in [./solution/top.c](./solution/top.c).
 
 * See example 1, [C program](./examples/top10.c)
 * See example 2, [shell script with for loop](./examples/sum01), [C program using `fdopen` function](./examples/sum01.c)
