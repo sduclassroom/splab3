@@ -5,7 +5,7 @@
 
 ### Task
 
-In this lab you are to write a program in `C` that solves the same problem as in `splab1`. The program should use the same tools that you used in `splab1`, but the shell logic should be done by the C program itself. You should use system calls like `fork`, `exec*`, `wait`/`waitpid`, `open`, `close`, `pipe`, `dup2`, `exit`/`_exit`.
+In this lab you are to write a program in `C` that solves the same problem as in `splab1`. The program should use the same tools that you used in `splab1`, but the shell logic should be done by the C program itself. You should use system calls like `fork`, `exec*`, `wait`/`waitpid`, `open`, `close`, `pipe`, `dup2`, `exit`/`_exit`. Store your solution in [./solution/top.c](./solution/top.c).
 
 By shell logic we mean:
 * forking processes and waiting results from them
