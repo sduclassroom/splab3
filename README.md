@@ -1,4 +1,4 @@
-# splab3 - io system calls
+## splab3 - io system calls
 
 ### Aim
 - To master basic i/o redirection system calls
