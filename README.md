@@ -1,7 +1,7 @@
 ## splab3 - pipeline
 
 ### Aim
-- To master basic i/o redirection system calls
+- Learn to build a pipeline of processes using various system calls.
 
 ### Task
 
