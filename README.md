@@ -14,7 +14,7 @@ By shell logic we mean:
 
 Also the calculation of sums, precentages etc can be done in `C`.
 
-* See example 1, [C program](./example/top10.c)
+* See example 1, [C program](./examples/top10.c)
 * See example 2, [shell script with for loop](./examples/sum01), [C program using `fdopen` function](./examples/sum01.c)
 * See example 3, [shell script with `awk`](./examples/sum02), [C program without `fdopen`](./examples/sum02.c)
 
