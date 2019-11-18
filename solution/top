@@ -1,3 +1,9 @@
 #! /bin/bash
 
 # your solution for splab1
+echo "Enter the number of request"
+read number
+total=$(cut -d '"' -f2,3,4 log.txt | grep -v '"-' | cut -d ' ' -f2 | sort | uniq -c | sort -n -r | head -$number | sed -e 's/^[[:space:]]*//' | cut -d ' ' -f1 | awk '{sum+=$1} END {print sum}')
+with_ref=$(cut -d '"' -f2,3,4 log.txt | grep -v '\"-' | cut -d ' ' -f2 | sort | uniq -c | sort -n -r | head -$number | sed -e 's/^[[:space:]]*//' | awk '{printf("%s - %d - %.2f%% \n", $2, $1, $1 / "'$total'" * 100)}')
+
+echo "$with_ref" 
